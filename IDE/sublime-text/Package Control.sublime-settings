@@ -1,0 +1,22 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"1337 Color Scheme",
+		"BracketGuard",
+		"BracketHighlighter",
+		"Chain of Command",
+		"Color Scheme - Eazy Light",
+		"Notepad++ Color Scheme",
+		"Origami",
+		"Package Control",
+		"SublimeAStyleFormatter",
+		"SublimeLinter",
+		"SublimeLinter-clang",
+		"SublimeLinter-gcc",
+		"Terminus"
+	]
+}
