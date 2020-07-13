@@ -12,7 +12,7 @@ const long long MOD = 1e9 + 7;
 
 typedef long long ll;
 typedef vector<int> vi;
-typedef pair<int,int> ii;
+typedef pair<int, int> ii;
 typedef vector<ii> vii;
 typedef vector<vi> vvi;
 
@@ -26,12 +26,12 @@ int main() {
     cin.tie(0); cout.tie(0);
     //freopen("input.txt", "r", stdin);
     //freopen("output.txt", "w", stdout);
-  
+
     cin >> N;
-    for(int i = 0; i < N; i++) cin >> arr[i];
-    
+    for (int i = 0; i < N; i++) cin >> arr[i];
+
     cur = ans = arr[0];
-    for(int i = 1; i < N; i++) {
+    for (int i = 1; i < N; i++) {
         cur = max(0, cur);
         cur += arr[i];
         ans = max(ans, cur);
