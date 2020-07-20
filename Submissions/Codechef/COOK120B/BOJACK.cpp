@@ -1,5 +1,3 @@
-<snippet>
-	<content><![CDATA[
 #include <bits/stdc++.h>
 using namespace std;
 #define fo(int, i, a, b)        for (int i=a; i<(b); i++)
@@ -10,23 +8,26 @@ using namespace std;
 #define all(x)                  x.begin(), x.end()
 #define sortall(x)              sort(all(x))
 #define enl                     "\n"
-#define dbg(x)                  cout << #x << ": " << x << enl;
+#define dbg(x)                  cout << #x << " " << x << enl;
 // #define PI 3.1415926535897932384626
 // const int MOD = 1000000007; const lli INF = 1e18; const int MX = 100001;
 
 void solve() {
-
+    int d; cin >> d;
+    cout << (2 * d) + 1 << enl;
+    fo(int, i, 0, (d * 2 + 1)) {
+        if (i == d + 1) {
+            cout << 'b';
+            continue;
+        }
+        cout << 'a';
+    }
+    cout << enl;
 }
 
 int main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
-    // int testcase; cin >> testcase; for (int i = 1; i <= testcase; ++i)
-    solve();
+    int testcase; cin >> testcase; for (int i = 1; i <= testcase; ++i)
+        solve();
     return 0;
 }
-]]></content>
-	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>cp-template</tabTrigger>
-	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.python</scope> -->
-</snippet>

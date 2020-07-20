@@ -8,6 +8,7 @@ using namespace std;
 #define all(x)                  x.begin(), x.end()
 #define sortall(x)              sort(all(x))
 #define enl                     "\n"
+#define dbg(x)                  cout << #x << ": " << x << enl;
 // #define PI 3.1415926535897932384626
 // const int MOD = 1000000007; const lli INF = 1e18; const int MX = 100001;
 
