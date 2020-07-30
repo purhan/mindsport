@@ -1,6 +1,8 @@
 "GENERAL SETTINGS
 syntax on
 set number
+set autoread
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 
 "KEYBINDINGS
 nmap <S-Up> v<Up>
@@ -25,3 +27,6 @@ map <C-a> ggVG
 map <C-c> "+y
 map <silent> <C-s> <Esc>:w
 map <silent> <C-w> <C-C>:q!<CR>
+
+" COMPILE RUN
+map <C-b> <Esc>:!g++ -o compiled.o % -std=c++17 && ./compiled.o<Enter>
