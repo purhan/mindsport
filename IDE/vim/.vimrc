@@ -4,6 +4,11 @@ set number
 set autoread
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 set clipboard=unnamedplus
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set guifont=Consolas\ 12
 
 "KEYBINDINGS
 nmap <S-Up> v<Up>
@@ -29,11 +34,17 @@ map <C-c> "+y
 imap <silent><C-s> <Esc>:w<Enter>
 map <silent><C-s> <Esc>:w<Enter>
 map <silent><C-w> <C-C>:q!<CR>
+noremap i a
 
 " COMPILE RUN
 map <C-b> <Esc>:w<CR>:!g++ -o compiled.o % -std=c++17 && ./compiled.o<Enter>
 
 " VUNDLE PLUGINS
+" ===========================
+" TO INSTALL PLUGINS:
+"   :source %
+"   :PlugInstall
+" ===========================
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -41,27 +52,27 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
+Plugin 'preservim/nerdtree'
 " LINTING & FORMATTING
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'dense-analysis/ale'
 call vundle#end()
 filetype plugin indent on
-"au BufWrite * :gg=G
-" ===========================
-" TO INSTALL PLUGINS:
-"   :source %
-"   :PlugInstall
-" ===========================
+" Code Formatting
+autocmd BufWritePost * :Autoformat
+" Toggle NERDTree
+nmap <C-e> :NERDTreeToggle<CR>
 
 " THEMING
 set guioptions-=r
 colorscheme gruvbox
 set bg=dark
 
-" CURSOR
-if has("autocmd")
-  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-  au InsertEnter,InsertChange *
-\ silent execute '!echo -ne "\e[6 q"' | redraw! |
-au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif
+" BRACKET COMPLETION
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
