@@ -8,7 +8,10 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set guifont=Consolas\ 12
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+set updatetime=250
+set title
+
 
 "KEYBINDINGS
 nmap <S-Up> v<Up>
@@ -26,18 +29,19 @@ imap <S-Right> <Esc>v<Right>
 vmap <C-c> y<Esc>i
 vmap <C-x> d<Esc>i
 map <C-v> pi
-map <S-End> V
+map <S-End> v$
 imap <C-v> <Esc>pi
-imap <C-z> <Esc>ui
+map <C-z> <Esc>u
+map <C-y> <Esc><C-r>i
 map <C-a> ggVG
 map <C-c> "+y
 imap <silent><C-s> <Esc>:w<Enter>
 map <silent><C-s> <Esc>:w<Enter>
-map <silent><C-w> <C-C>:q!<CR>
+map <silent><C-w> <C-C>:bd<CR>
+map <silent><C-Q> <C-C>:q!<CR>
+map <silent><C-T> <Esc>:tabnew#<CR>
 noremap i a
 
-" COMPILE RUN
-map <C-b> <Esc>:w<CR>:!g++ -o compiled.o % -std=c++17 && ./compiled.o<Enter>
 
 " VUNDLE PLUGINS
 " ===========================
@@ -52,21 +56,58 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'rakr/vim-one'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'preservim/nerdtree'
-" LINTING & FORMATTING
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'dense-analysis/ale'
 call vundle#end()
+
+
+" PLUGIN PREFERENCES
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = 'L'
 filetype plugin indent on
-" Code Formatting
+let g:NERDTreeWinPos = "right"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+nnoremap <C-S-tab> :bprevious<CR>
+nnoremap <C-tab>   :bnext<CR>
+let g:formatdef_my_custom_cpp = '"astyle"'
+let b:formatters_cpp = ['my_custom_cpp']
 autocmd BufWritePost * :Autoformat
-" Toggle NERDTree
 nmap <C-e> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+
 
 " THEMING
 set guioptions-=r
+set guioptions-=L
+set guioptions-=T
 colorscheme gruvbox
 set bg=dark
+
 
 " BRACKET COMPLETION
 inoremap " ""<left>
@@ -76,3 +117,11 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+
+" SYSTEM SPECIFIC SETTINGS
+cd ~/Desktop/Coding\ Library/
+
+
+" COMPILE RUN
+map <C-b> <Esc>:w<CR>:!g++ -o compiled.o % -std=c++17 && ./compiled.o<Enter>
