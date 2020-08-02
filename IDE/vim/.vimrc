@@ -8,9 +8,19 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
 set updatetime=250
 set title
+autocmd GUIEnter * set vb t_vb=
+set belloff=all
+function! ToggleGUICruft()
+    if &guioptions==''
+        exec('set guioptions=mT')
+    else
+        exec('set guioptions=')
+    endif
+endfunction
+map <C-m> <Esc>:call ToggleGUICruft()<cr>
 
 
 "KEYBINDINGS
@@ -62,6 +72,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'preservim/nerdtree'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'dense-analysis/ale'
+Plugin 'tpope/vim-surround'
 call vundle#end()
 
 
@@ -102,25 +113,13 @@ let NERDTreeShowHidden=1
 
 
 " THEMING
-set guioptions-=r
-set guioptions-=L
-set guioptions-=T
+set guioptions=
 colorscheme gruvbox
 set bg=dark
 
 
-" BRACKET COMPLETION
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
-
 " SYSTEM SPECIFIC SETTINGS
-cd ~/Desktop/Coding\ Library/
+cd ~/Desktop/Coding\ Library/Ongoing
 
 
 " COMPILE RUN
