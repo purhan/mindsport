@@ -8,7 +8,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
 set updatetime=250
 set title
 autocmd GUIEnter * set vb t_vb=
@@ -54,25 +53,22 @@ noremap i a
 
 
 " VUNDLE PLUGINS
-" ===========================
-" TO INSTALL PLUGINS:
-"   :source %
-"   :PlugInstall
-" ===========================
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'rakr/vim-one'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'rakr/vim-one'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'preservim/nerdtree'
-Plugin 'Chiel92/vim-autoformat'
 Plugin 'dense-analysis/ale'
 Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'ycm-core/YouCompleteMe'
+" Plugin 'Chiel92/vim-autoformat'   -----> sudo apt-get install astyle (for cpp)
 call vundle#end()
 
 
@@ -105,9 +101,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 nnoremap <C-S-tab> :bprevious<CR>
 nnoremap <C-tab>   :bnext<CR>
-let g:formatdef_my_custom_cpp = '"astyle"'
-let b:formatters_cpp = ['my_custom_cpp']
-autocmd BufWritePost * :Autoformat
 nmap <C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
@@ -116,6 +109,7 @@ let NERDTreeShowHidden=1
 set guioptions=
 colorscheme gruvbox
 set bg=dark
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
 
 
 " SYSTEM SPECIFIC SETTINGS
@@ -124,3 +118,4 @@ cd ~/Desktop/Coding\ Library/Ongoing
 
 " COMPILE RUN
 map <C-b> <Esc>:w<CR>:!g++ -o compiled.o % -std=c++17 && ./compiled.o<Enter>
+auto BufWritePost *.cpp execute 'silent :!astyle' shellescape(expand('%'), 1)
