@@ -114,6 +114,12 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
 
 " SYSTEM SPECIFIC SETTINGS
 cd ~/Desktop/Coding\ Library/Ongoing
+function! Templatecpp()
+    :1,$d
+    :read "~/Desktop/Coding Library/IDE/template.cpp"
+    :1d
+endfunction
+command Template :call Templatecpp()
 
 
 " COMPILE RUN
